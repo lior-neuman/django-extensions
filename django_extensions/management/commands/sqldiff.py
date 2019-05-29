@@ -197,7 +197,8 @@ class SQLDiff(object):
         """
         cursor = connection.cursor()
         cursor.execute(query, param)
-        fieldnames = [name[0] for name in cursor.description]
+	# LN: .lower() was required here, or column_names, is_null don't work in our version of mysql (8.0.15)
+        fieldnames = [name[0].lower() for name in cursor.description]
         result = []
         for row in cursor.fetchall():
             rowset = []
