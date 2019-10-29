@@ -1,3 +1,14 @@
+For Django 1.8, MySql 8::
+
+    $ cd ~
+    $ git clone https://github.com/lior-neuman/django-extensions.git
+    $ cd ~/django-extensions/
+    $ git checkout liors-working-version
+    $ pip install ~/django-extensions
+
+    $ cd ~/dealthing/webapp
+    $ python manage.py sqldiff  -a
+
 ===================
  Django Extensions
 ===================
