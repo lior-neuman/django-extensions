@@ -616,8 +616,8 @@ class MySQLDiff(SQLDiff):
                 WHERE table_schema = DATABASE()
                     AND table_name = %s""", [table_name])
             for table_info in result:
-                key = (tablespace, table_name, table_info['column_name'])
-                self.null[key] = table_info['is_nullable'] == 'YES'
+                key = (tablespace, table_name, table_info['COLUMN_NAME'])
+                self.null[key] = table_info['IS_NULLABLE'] == 'YES'
 
     def load_unsigned(self):
         tablespace = 'public'
@@ -629,7 +629,7 @@ class MySQLDiff(SQLDiff):
                     AND table_name = %s
                     AND column_type LIKE '%%unsigned'""", [table_name])
             for table_info in result:
-                key = (tablespace, table_name, table_info['column_name'])
+                key = (tablespace, table_name, table_info['COLUMN_NAME'])
                 self.unsigned.add(key)
 
     def load_auto_increment(self):
@@ -641,7 +641,7 @@ class MySQLDiff(SQLDiff):
                    AND table_name = %s
                    AND extra = 'auto_increment'""", [table_name])
             for table_info in result:
-                key = (table_name, table_info['column_name'])
+                key = (table_name, table_info['COLUMN_NAME'])
                 self.auto_increment.add(key)
 
     # All the MySQL hacks together create something of a problem
